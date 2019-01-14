@@ -18,6 +18,15 @@ const videoContainer = document.getElementById('video-container');
 
 const defaultChannel = 'techguyweb';
 
+// Form submit and change channel
+channelForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const channel = channelInput.value;
+    // Get the new channel and refresh the UI
+    getChannel(channel);
+});
+
 /**
  *  On load, called to load the auth2 library and API client library.
  */
@@ -107,7 +116,7 @@ function getChannel(channel) {
  */
 function buildChannelTemplate(channel) {
     return `
-        <ul class="collection>
+        <ul class="collection">
             <li class="collection-item">Title: ${channel.snippet.title}</li>
             <li class="collection-item">ID: ${channel.id}</li>
             <li class="collection-item">Subscribers: ${channel.statistics.subscriberCount}</li>
