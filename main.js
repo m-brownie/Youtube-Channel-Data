@@ -105,6 +105,9 @@ function getChannel(channel) {
 
         // Display the channel informations
         showChannelData(output);
+
+        const playlistId = channel.contentDetails.relatedPlayList.uploads;
+        requestVideoPlayList(playlistId);
     })
     .catch(err => 
         alert('No channel by that name : ' + channel)
@@ -119,9 +122,9 @@ function buildChannelTemplate(channel) {
         <ul class="collection">
             <li class="collection-item">Title: ${channel.snippet.title}</li>
             <li class="collection-item">ID: ${channel.id}</li>
-            <li class="collection-item">Subscribers: ${channel.statistics.subscriberCount}</li>
-            <li class="collection-item">Views: ${channel.statistics.viewCount}</li>
-            <li class="collection-item">Videos: ${channel.statistics.videoCount}</li>
+            <li class="collection-item">Subscribers: ${numberWithCommas(channel.statistics.subscriberCount)}</li>
+            <li class="collection-item">Views: ${numberWithCommas(channel.statistics.viewCount)}</li>
+            <li class="collection-item">Videos: ${numberWithCommas(channel.statistics.videoCount)}</li>
         </ul>
         <p>${channel.snippet.description}</p>
         <hr>
@@ -136,4 +139,30 @@ function showChannelData(data) {
     const channelData = document.getElementById('channel-data');
 
     channelData.innerHTML = data;
+}
+
+/**
+ * Get playlist datas.
+ */
+function requestVideoPlayList(playlistId) {
+    // Parameter object
+    const requestOptions = {
+        playlistId: playlistId,
+        part: 'snippet',
+        maxResults: 10
+    }
+
+    // Call the playlist items API endpoint
+    var request = gapi.client.youtube.playListItems.list(requestOptions);
+
+    request.execute(response => {
+        console.log(response);
+    });
+}
+
+/**
+ * Format big numbers with a comma separator. 
+ */
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
