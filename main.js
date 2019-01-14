@@ -1,5 +1,5 @@
 // Options
-const CLIENT_ID = "864414151564-im27tlpald9hqq717fg96it8mhroksd7.apps.googleusercontent.com";
+const CLIENT_ID = "864414151564-0013jagsdpckh5s4347ikb5anr57975j.apps.googleusercontent.com";
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
