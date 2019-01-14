@@ -34,7 +34,8 @@ function initClient() {
         discoveryDocs: DISCOVERY_DOCS,
         clientId: CLIENT_ID,
         scope: SCOPES
-    }).then(() => {
+    })
+    .then(() => {
         // Listen for sign-in state changes.
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
@@ -81,15 +82,14 @@ function handleSignoutClick(event) {
 /**
  * Print files.
  */
-function getChannel(defaultChannel) {
-    console.log(defaultChannel);
-    /*gapi.client.youtube.channels.list({
+function getChannel(channel) {
+    gapi.client.youtube.channels.list({
         'part': 'snippet,contentDetails,statistics',
-        'forUsername': 'GoogleDevelopers'
-    }).then(function(response) {
-        var channel = response.result.items[0];
-        appendPre('This channel\'s ID is ' + channel.id + '. ' +
-                'Its title is \'' + channel.snippet.title + ', ' +
-                'and it has ' + channel.statistics.viewCount + ' views.');
-    });*/
+        'forUsername': channel
+    })
+    .then(response => {
+        console.log(channel)
+    })
+    .catch(err => alert('No channel by that name : ' + channel)
+    );
 }
