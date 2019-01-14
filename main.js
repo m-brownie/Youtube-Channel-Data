@@ -108,7 +108,7 @@ function getChannel(channel) {
 function buildChannelTemplate(channel) {
     return `
         <ul class="collection>
-            <li class="collection-item">Title: ${channel..snippet.title}</li>
+            <li class="collection-item">Title: ${channel.snippet.title}</li>
             <li class="collection-item">ID: ${channel.id}</li>
             <li class="collection-item">Subscribers: ${channel.statistics.subscriberCount}</li>
             <li class="collection-item">Views: ${channel.statistics.viewCount}</li>
