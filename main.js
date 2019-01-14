@@ -88,8 +88,16 @@ function getChannel(channel) {
         'forUsername': channel
     })
     .then(response => {
-        console.log(channel)
+        console.log(response);
+        const channel = response.result.items[0];
+
+        const output = `
+            <ul class="collection>
+                <li class="collection-item">ID: ${channel.id}</li>
+            </ul>
+        `;
     })
-    .catch(err => alert('No channel by that name : ' + channel)
+    .catch(err => 
+        alert('No channel by that name : ' + channel)
     );
 }
