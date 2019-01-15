@@ -113,7 +113,7 @@ function getChannel(channelParam) {
             requestVideoPlayList(playlistId);
 
             // Test
-            getChannelByID(UC3DFdy_qc-cqgKCyQTHLGzA);
+            getChannelByID('UC3DFdy_qc-cqgKCyQTHLGzA');
         } else {
             throw 'No channel';
         }
