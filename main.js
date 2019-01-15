@@ -116,7 +116,8 @@ function getChannel(channelSearchParam) {
         }
     })
     .catch(err => 
-        alert('No channel by that name : ' + channelSearchParam, err)
+        // alert('No channel by that name : ' + channelSearchParam, err)
+        M.toast({html: 'No channel with that name.'})
     );
 }
 
@@ -144,11 +145,12 @@ function getChannelByID(id) {
             const playlistId = channel.contentDetails.relatedPlaylists.uploads;
             requestVideoPlayList(playlistId);
         } else {
-            throw 'No channel';
+            M.toast({html: 'No channel with that ID.'})
         }
     })
     .catch(err => 
-        alert('No channel with that id : ' + id, err)
+        // alert('No channel with that id : ' + id, err)
+        M.toast({html: 'No channel with that ID.'})
     );
 }
 
