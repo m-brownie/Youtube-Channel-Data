@@ -106,7 +106,7 @@ function getChannel(channelParam) {
         // Display the channel informations
         showChannelData(output);
 
-        const playlistId = channel.contentDetails.relatedPlayLists.uploads;
+        const playlistId = channel.contentDetails.relatedPlaylists.uploads;
         requestVideoPlayList(playlistId);
     })
     .catch(err => 
