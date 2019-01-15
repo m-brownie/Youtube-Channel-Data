@@ -154,6 +154,9 @@ function getChannelByID(id) {
  * Build channel template.
  */
 function buildChannelTemplate(channel) {
+    
+    videoContainer.insertBefore(`<p><img src='${channel.brandingSettings.image.bannerImageUrl}' class="thumbnailImg" atl="channel banner"/></p>`);
+
     return `
         <ul class="collection">
             <li class="collection-item">Title: ${channel.snippet.title}</li>
@@ -168,7 +171,6 @@ function buildChannelTemplate(channel) {
         <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
         <br>
         <br>
-        <p><img src='${channel.brandingSettings.image.bannerImageUrl}' class="thumbnailImg" atl="channel banner"/></p>
     `;
 }
 
