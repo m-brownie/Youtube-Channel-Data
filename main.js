@@ -111,12 +111,31 @@ function getChannel(channelParam) {
 
             const playlistId = channel.contentDetails.relatedPlaylists.uploads;
             requestVideoPlayList(playlistId);
+
+            // Test
+            getChannelByID(UC3DFdy_qc-cqgKCyQTHLGzA);
         } else {
             throw 'No channel';
         }
     })
     .catch(err => 
         alert('No channel by that name : ' + channelParam, err)
+    );
+}
+
+/**
+ * Get channel informations from channel ID.
+ */
+function getChannelByID(id) {
+    gapi.client.youtube.channels.list({
+        part: 'snippet,contentDetails,statistics',
+        id: id
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(err => 
+        alert('No channel with that id : ' + id, err)
     );
 }
 
