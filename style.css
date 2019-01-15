@@ -3,3 +3,8 @@
 #signout-button {
     display: none;
 }
+
+.thumbnailImg {
+    float: left;
+    margin-right: 10px;
+}

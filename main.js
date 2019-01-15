@@ -164,7 +164,7 @@ function buildChannelTemplate(channel) {
             <li class="collection-item">Views: ${numberWithCommas(channel.statistics.viewCount)}</li>
             <li class="collection-item">Videos: ${numberWithCommas(channel.statistics.videoCount)}</li>
         </ul>
-        <p><img src='${channel.snippet.thumbnails.default.url}' atl="channel thumbnail"/>${channel.snippet.description}</p>
+        <p><img src='${channel.snippet.thumbnails.default.url}' class="thumbnailImg" atl="channel thumbnail"/>${channel.snippet.description}</p>
         <hr>
         <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
     `;
