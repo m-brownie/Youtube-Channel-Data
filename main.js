@@ -98,16 +98,22 @@ function getChannel(channelParam) {
     })
     .then(response => {
         console.log(response);
-        const channel = response.result.items[0];
 
-        // Build the output to display channel datas 
-        const output = buildChannelTemplate(channel);
+        if(response.result.items[0].length() > 0) {
+            // Set the working informations
+            const channel = response.result.items[0];
 
-        // Display the channel informations
-        showChannelData(output);
+            // Build the output to display channel datas 
+            const output = buildChannelTemplate(channel);
 
-        const playlistId = channel.contentDetails.relatedPlaylists.uploads;
-        requestVideoPlayList(playlistId);
+            // Display the channel informations
+            showChannelData(output);
+
+            const playlistId = channel.contentDetails.relatedPlaylists.uploads;
+            requestVideoPlayList(playlistId);
+        } else {
+            throw 'No channel';
+        }
     })
     .catch(err => 
         alert('No channel by that name : ' + channelParam, err)
