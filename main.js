@@ -93,11 +93,10 @@ function handleSignoutClick(event) {
  */
 function getChannel(channelSearchParam) {
     gapi.client.youtube.channels.list({
-        part: 'snippet,contentDetails,statistics',
+        part: 'snippet,contentDetails,statistics,brandingSettings',
         forUsername: channelSearchParam
     })
     .then(response => {
-        console.log("Channel by name : " + response);
 
         if(response.result.items.length > 0) {
             // Set the working informations
@@ -116,7 +115,6 @@ function getChannel(channelSearchParam) {
         }
     })
     .catch(err => 
-        // alert('No channel by that name : ' + channelSearchParam, err)
         M.toast({html: 'No channel with that name.'})
     );
 }
@@ -126,11 +124,10 @@ function getChannel(channelSearchParam) {
  */
 function getChannelByID(id) {
     gapi.client.youtube.channels.list({
-        part: 'snippet,contentDetails,statistics',
+        part: 'snippet,contentDetails,statistics,brandingSettings',
         id: id
     })
     .then(response => {
-        console.log("Channel by ID : " + response);
 
         if(response.result.items.length > 0) {
             // Set the working informations
@@ -145,12 +142,11 @@ function getChannelByID(id) {
             const playlistId = channel.contentDetails.relatedPlaylists.uploads;
             requestVideoPlayList(playlistId);
         } else {
-            M.toast({html: 'No channel with that ID.'})
+            M.toast({html: 'No channel with that name or ID.'});
         }
     })
     .catch(err => 
-        // alert('No channel with that id : ' + id, err)
-        M.toast({html: 'No channel with that ID.'})
+        M.toast({html: 'No channel with that name or ID.'})
     );
 }
 
@@ -170,6 +166,9 @@ function buildChannelTemplate(channel) {
         <br>
         <hr>
         <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
+        <br>
+        <br>
+        <p><img src='${channel.brandingSettings.image.bannerImageUrl}' class="thumbnailImg" atl="channel banner"/></p>
     `;
 }
 
