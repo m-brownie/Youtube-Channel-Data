@@ -112,11 +112,11 @@ function getChannel(channelSearchParam) {
             const playlistId = channel.contentDetails.relatedPlaylists.uploads;
             requestVideoPlayList(playlistId);
         } else {
-            getChannelByID(channelParam);
+            getChannelByID(channelSearchParam);
         }
     })
     .catch(err => 
-        alert('No channel by that name : ' + channelParam, err)
+        alert('No channel by that name : ' + channelSearchParam, err)
     );
 }
 
