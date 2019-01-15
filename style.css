@@ -4,6 +4,11 @@
     display: none;
 }
 
+#authorize-button, 
+#signout-button {
+    margin-top: 13px;
+}
+
 .thumbnailImg {
     float: left;
     margin-right: 10px;
