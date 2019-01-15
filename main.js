@@ -91,13 +91,13 @@ function handleSignoutClick(event) {
 /**
  * Get Channel informations
  */
-function getChannel(channelParam) {
+function getChannel(channelSearchParam) {
     gapi.client.youtube.channels.list({
         part: 'snippet,contentDetails,statistics',
-        forUsername: channelParam
+        forUsername: channelSearchParam
     })
     .then(response => {
-        console.log(response);
+        console.log("Channel by name : " + response);
 
         if(response.result.items.length > 0) {
             // Set the working informations
@@ -111,11 +111,8 @@ function getChannel(channelParam) {
 
             const playlistId = channel.contentDetails.relatedPlaylists.uploads;
             requestVideoPlayList(playlistId);
-
-            // Test
-            getChannelByID('UC3DFdy_qc-cqgKCyQTHLGzA');
         } else {
-            throw 'No channel';
+            getChannelByID(channelParam);
         }
     })
     .catch(err => 
@@ -132,7 +129,23 @@ function getChannelByID(id) {
         id: id
     })
     .then(response => {
-        console.log(response);
+        console.log("Channel by ID : " + response);
+
+        if(response.result.items.length > 0) {
+            // Set the working informations
+            const channel = response.result.items[0];
+
+            // Build the output to display channel datas 
+            const output = buildChannelTemplate(channel);
+
+            // Display the channel informations
+            showChannelData(output);
+
+            const playlistId = channel.contentDetails.relatedPlaylists.uploads;
+            requestVideoPlayList(playlistId);
+        } else {
+            throw 'No channel';
+        }
     })
     .catch(err => 
         alert('No channel with that id : ' + id, err)
