@@ -153,7 +153,7 @@ function requestVideoPlayList(playlistId) {
     }
 
     // Call the playlist items API endpoint
-    var request = gapi.client.youtube.playListItems.list(requestOptions);
+    var request = gapi.client.youtube.playlistItems.list(requestOptions);
 
     request.execute(response => {
         console.log(response);
