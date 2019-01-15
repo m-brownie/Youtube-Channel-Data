@@ -164,7 +164,7 @@ function buildChannelTemplate(channel) {
             <li class="collection-item">Views: ${numberWithCommas(channel.statistics.viewCount)}</li>
             <li class="collection-item">Videos: ${numberWithCommas(channel.statistics.videoCount)}</li>
         </ul>
-        <p>${channel.snippet.description}</p>
+        <p><img src='${channel.snippet.thumbnails.default.url}' atl="channel thumbnail"/>${channel.snippet.description}</p>
         <hr>
         <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
     `;
@@ -187,7 +187,7 @@ function requestVideoPlayList(playlistId) {
     const requestOptions = {
         playlistId: playlistId,
         part: 'snippet',
-        maxResults: 10
+        maxResults: 12
     }
 
     // Call the playlist items API endpoint
@@ -214,7 +214,7 @@ function requestVideoPlayList(playlistId) {
  * Build playlist template.
  */
 function buildPlaylistTemplate(playlistItems) {
-    let output = '<h4 class="align-center">Latest Videos</h4>';
+    let output = '<br><h4 class="center-align">Latest Videos</h4>';
 
     // Loop through videos and append output
     playlistItems.forEach(item => {
