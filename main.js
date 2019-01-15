@@ -194,8 +194,47 @@ function requestVideoPlayList(playlistId) {
     var request = gapi.client.youtube.playlistItems.list(requestOptions);
 
     request.execute(response => {
-        console.log(response);
+        console.log("Playlist by ID : " + response);
+
+        const playlistItems = response.result.items;
+
+        if(playlistItems) {
+            let playlistOutput = buildPlaylistTemplate(playlistItems);
+
+            // Output playlist videos
+            videoContainer.innerHTML = playlistOutput;
+
+        } else {
+            videoContainer.innerHTML = 'No uploaded videos';
+        }
     });
+}
+
+/**
+ * Build playlist template.
+ */
+function buildPlaylistTemplate(playlistItems) {
+    let output = '<h4 class="align-center">Latest Videos</h4>';
+
+    // Loop through videos and append output
+    playlistItems.forEach(item => {
+        const videoID = item.snippet.resourceId.videoId;
+
+        output += `
+            <div class="col s3">
+                <iframe 
+                    width="100%" 
+                    height="auto" 
+                    src="https://www.youtube.com/embed/${videoID}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        `;
+    });
+
+    return output;
 }
 
 /**
