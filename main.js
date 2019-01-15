@@ -99,7 +99,7 @@ function getChannel(channelParam) {
     .then(response => {
         console.log(response);
 
-        if(response.result.items[0].length() > 0) {
+        if(response.result.items[0].length > 0) {
             // Set the working informations
             const channel = response.result.items[0];
 
