@@ -93,7 +93,7 @@ function handleSignoutClick(event) {
  */
 function getChannel(channelSearchParam) {
     gapi.client.youtube.channels.list({
-        part: 'snippet,contentDetails,statistics,brandingSettings',
+        part: 'snippet,contentDetails,statistics',
         forUsername: channelSearchParam
     })
     .then(response => {
@@ -124,7 +124,7 @@ function getChannel(channelSearchParam) {
  */
 function getChannelByID(id) {
     gapi.client.youtube.channels.list({
-        part: 'snippet,contentDetails,statistics,brandingSettings',
+        part: 'snippet,contentDetails,statistics',
         id: id
     })
     .then(response => {
@@ -154,9 +154,6 @@ function getChannelByID(id) {
  * Build channel template.
  */
 function buildChannelTemplate(channel) {
-    
-    videoContainer.insertBefore(`<p><img src='${channel.brandingSettings.image.bannerImageUrl}' class="thumbnailImg" atl="channel banner"/></p>`);
-
     return `
         <ul class="collection">
             <li class="collection-item">Title: ${channel.snippet.title}</li>
@@ -169,8 +166,6 @@ function buildChannelTemplate(channel) {
         <br>
         <hr>
         <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
-        <br>
-        <br>
     `;
 }
 
